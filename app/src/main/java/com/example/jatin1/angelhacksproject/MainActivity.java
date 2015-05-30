@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
         String json = null;
         try {
 
-            InputStream is = getAssets().open("yourfilename.json");
+            InputStream is = getAssets().open("countries.json");
 
             int size = is.available();
 
