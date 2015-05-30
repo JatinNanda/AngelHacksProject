@@ -11,7 +11,7 @@ public class Country {
     private String name;
     public Country() {
     }
-    public ArrayList getCountries() {
+    public ArrayList<String> getCountries() {
         String fileName = "countries.txt";
         BufferedReader br = null;
         ArrayList<String> countries = new ArrayList<String>();
