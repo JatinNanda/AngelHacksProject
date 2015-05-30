@@ -36,7 +36,7 @@ public class HomeScreen extends ActionBarActivity {
         try {
             fileScanner = new Scanner(new File("/Users/advaithvenkatakrishnan/AndroidStudioProjects/AngelHacksProject/app/src/main/assets/database/countries.txt"));
         } catch (FileNotFoundException e) {
-            System.out.println("FAILURE");
+            System.out.println("JATIN IS GAY");
             e.printStackTrace();
         }
         String fileline;
