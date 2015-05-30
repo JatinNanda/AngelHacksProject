@@ -28,6 +28,7 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(new Intent(getApplicationContext(), LoadingActivity.class));
             }
         }));
+
     }
 
     @Override
@@ -51,4 +52,5 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
