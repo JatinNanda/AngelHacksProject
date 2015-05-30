@@ -1,19 +1,18 @@
 package com.example.jatin1.angelhacksproject;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 
 public class HomeScreen extends ActionBarActivity {
@@ -22,31 +21,46 @@ public class HomeScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-        Country country = new Country();
 
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        ArrayList<String> countries = getCountries();
+        ArrayList<String> countries = readFileFromAssets("files/countries.txt");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countries);
         dropdown.setAdapter(adapter);
 
     }
 
-    public ArrayList<String> getCountries() {
-        Scanner fileScanner = null;
+    private ArrayList<String> readFileFromAssets(String fileName) {
+        ArrayList<String> countries = new ArrayList<String>();
+        StringBuilder returnString = new StringBuilder();
+        InputStream fIn = null;
+        InputStreamReader isr = null;
+        BufferedReader input = null;
         try {
-            fileScanner = new Scanner(new File("/Users/advaithvenkatakrishnan/AndroidStudioProjects/AngelHacksProject/app/src/main/assets/database/countries.txt"));
-        } catch (FileNotFoundException e) {
-            System.out.println("JATIN IS GAY");
-            e.printStackTrace();
-        }
-        String fileline;
-        ArrayList<String >countries = new ArrayList<String>();
-        while(fileScanner.hasNext()) {
-            fileline = fileScanner.nextLine();
-            countries.add(fileline);
+            fIn = getResources().getAssets()
+                    .open(fileName, Context.MODE_WORLD_READABLE);
+            isr = new InputStreamReader(fIn);
+            input = new BufferedReader(isr);
+            String line = "";
+            while ((line = input.readLine()) != null) {
+                countries.add(line);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        } finally {
+            try {
+                if (isr != null)
+                    isr.close();
+                if (fIn != null)
+                    fIn.close();
+                if (input != null)
+                    input.close();
+            } catch (Exception e2) {
+                e2.getMessage();
+            }
         }
         return countries;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
