@@ -1,17 +1,31 @@
 package com.example.jatin1.angelhacksproject;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class HomeScreen extends ActionBarActivity {
+    Button country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        country = (Button) findViewById(R.id.country_button);
+        country.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                country.setText("Hello");
+            }
+        }));
     }
 
 
@@ -35,5 +49,30 @@ public class HomeScreen extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+
+            InputStream is = getAssets().open("countries.json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
     }
 }
