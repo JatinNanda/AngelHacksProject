@@ -1,9 +1,12 @@
 package com.example.jatin1.angelhacksproject;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class NextTransition extends ActionBarActivity {
@@ -12,6 +15,13 @@ public class NextTransition extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next_transition);
+        Button done = (Button) findViewById(R.id.quit_button);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoadingActivity.class));
+            }
+        });
     }
 
 
