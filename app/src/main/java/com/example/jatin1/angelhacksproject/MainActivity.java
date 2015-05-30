@@ -40,8 +40,4 @@ public class MainActivity extends ActionBarActivity {
     public boolean isWorking() {
         return true;
     }
-
-    public boolean shreyaWasHere(){
-        return true;
-    }
 }
