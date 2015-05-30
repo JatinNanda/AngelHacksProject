@@ -20,6 +20,22 @@
             android:name=".HomeScreen"
             android:label="@string/title_activity_home_screen" >
         </activity>
+        <activity
+            android:name=".LoadingActivity"
+            android:label="@string/title_activity_loading" >
+        </activity>
+        <activity
+            android:name=".AdventureSelection"
+            android:label="@string/title_activity_adventure_selection" >
+        </activity>
+        <activity
+            android:name=".NextTransition"
+            android:label="@string/title_activity_next_transition" >
+        </activity>
+        <activity
+            android:name=".Itinerary"
+            android:label="@string/title_activity_itinerary" >
+        </activity>
     </application>
 
 </manifest>
