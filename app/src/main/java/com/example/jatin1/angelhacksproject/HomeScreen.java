@@ -70,7 +70,7 @@ public class HomeScreen extends ActionBarActivity {
             }
         });
     }
-    
+
     public ArrayList<String> findCities(String country) {
         ArrayList<String> cities = readFileFromAssets("files/cities.txt");
         ArrayList<String> countries = readFileFromAssets("files/countries.txt");
