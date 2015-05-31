@@ -1,34 +1,83 @@
 package com.example.jatin1.angelhacksproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
 
 public class HomeScreen extends ActionBarActivity {
-    Spinner spinner;
+    String ctry;
+    String cty;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        ArrayList<String> countries = readFileFromAssets("files/countries.txt");
+        final ArrayList<String> countries = readFileFromAssets("files/countries.txt");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countries);
         dropdown.setAdapter(adapter);
 
-    }
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                ctry = countries.get(position);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+        Spinner dropdown2 = (Spinner)findViewById(R.id.spinner2);
+        final ArrayList<String> cities = readFileFromAssets("files/cities.txt");
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
+        dropdown2.setAdapter(adapter2);
+        dropdown2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                cty = cities.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+    }
+    public ArrayList<String> findCities(String country) {
+        ArrayList<String> cities = readFileFromAssets("files/cities.txt");
+        ArrayList<String> countries = readFileFromAssets("files/countries.txt");
+        ArrayList<String> selectedCities = new ArrayList<String>();
+        for (String s: cities) {
+            if (s.equalsIgnoreCase(country)) {
+                continue;
+            }
+            for (String c: countries) {
+                if (!(s.equalsIgnoreCase(c))) {
+                    selectedCities.add(s);
+                }
+            }
+        }
+        return selectedCities;
+    }
     private ArrayList<String> readFileFromAssets(String fileName) {
         ArrayList<String> countries = new ArrayList<String>();
         StringBuilder returnString = new StringBuilder();
@@ -82,6 +131,4 @@ public class HomeScreen extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }

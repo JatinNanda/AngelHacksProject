@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
         suitcase.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoadingActivity.class));
+                startActivity(new Intent(getApplicationContext(), HomeScreen.class));
             }
         }));
 
