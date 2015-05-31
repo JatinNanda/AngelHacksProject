@@ -27,7 +27,7 @@ public class HomeScreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
+        Spinner dropdown = (Spinner) findViewById(R.id.spinner1);
         final ArrayList<String> countries = readFileFromAssets("files/countries.txt");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, countries);
         dropdown.setAdapter(adapter);
@@ -44,7 +44,7 @@ public class HomeScreen extends ActionBarActivity {
             }
 
         });
-        Spinner dropdown2 = (Spinner)findViewById(R.id.spinner2);
+        Spinner dropdown2 = (Spinner) findViewById(R.id.spinner2);
         final ArrayList<String> cities = readFileFromAssets("files/cities.txt");
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
         dropdown2.setAdapter(adapter2);
@@ -62,6 +62,7 @@ public class HomeScreen extends ActionBarActivity {
         });
 
     }
+    
     public ArrayList<String> findCities(String country) {
         ArrayList<String> cities = readFileFromAssets("files/cities.txt");
         ArrayList<String> countries = readFileFromAssets("files/countries.txt");
