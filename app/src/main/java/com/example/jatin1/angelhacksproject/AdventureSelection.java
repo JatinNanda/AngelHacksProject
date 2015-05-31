@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 
@@ -17,10 +18,10 @@ public class AdventureSelection extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adventure_selection);
         final ImageView[] choices = new ImageView[3];
-        choices[1] = (ImageView) findViewById(R.id.image1);
-        choices[2] = (ImageView) findViewById(R.id.image2);
-        choices[3] = (ImageView) findViewById(R.id.image3);
-        choices[1].setOnClickListener((new View.OnClickListener() {
+        choices[0] = (ImageView) findViewById(R.id.image1);
+        choices[1] = (ImageView) findViewById(R.id.image2);
+        choices[2] = (ImageView) findViewById(R.id.image3);
+        choices[0].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //insert code to influence next choice
@@ -28,7 +29,7 @@ public class AdventureSelection extends ActionBarActivity {
                 startActivity(new Intent(getApplicationContext(), NextTransition.class));
             }
         }));
-        choices[2].setOnClickListener((new View.OnClickListener() {
+        choices[1].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //insert code to influence next choice
@@ -36,7 +37,7 @@ public class AdventureSelection extends ActionBarActivity {
                 startActivity(new Intent(getApplicationContext(), NextTransition.class));
             }
         }));
-        choices[3].setOnClickListener((new View.OnClickListener() {
+        choices[2].setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //insert code to influence next choice
@@ -44,6 +45,8 @@ public class AdventureSelection extends ActionBarActivity {
                 startActivity(new Intent(getApplicationContext(), NextTransition.class));
             }
         }));
+
+
     }
 
 
