@@ -11,5 +11,6 @@
     <string name="title_activity_next_transition">NextTransition</string>
     <string name="title_activity_itinerary">Itinerary</string>
     <string name="title_activity_day">Day</string>
+    <string name="title_activity_pick_three">PickThree</string>
 
 </resources>

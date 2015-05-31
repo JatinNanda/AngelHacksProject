@@ -42,6 +42,10 @@
             android:name=".Day"
             android:label="@string/title_activity_day" >
         </activity>
+        <activity
+            android:name=".PickThree"
+            android:label="@string/title_activity_pick_three" >
+        </activity>
     </application>
 
 </manifest>

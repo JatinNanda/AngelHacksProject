@@ -48,7 +48,7 @@ public class HomeScreen extends ActionBarActivity {
                     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                         cty = cities.get(position);
                         destination = (Button) findViewById(R.id.destination);
-                        destination.setText("Your Destination:" + "\n " + ctry + ", " + cty);
+                        destination.setText("Your Destination:" + "\n " + cty + ", " + ctry);
                         destination.setOnClickListener((new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
