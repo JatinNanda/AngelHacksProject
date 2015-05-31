@@ -52,7 +52,7 @@ public class HomeScreen extends ActionBarActivity {
                         destination.setOnClickListener((new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                startActivity(new Intent(getApplicationContext(), LoadingActivity.class));
+                                startActivity(new Intent(getApplicationContext(), Day.class));
                             }
                         }));
                     }
