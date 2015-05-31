@@ -10,12 +10,14 @@
     android:orientation="vertical">
 
     <TextView
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
         android:text="Choose Your Country" />
 
     <Spinner
+        android:layout_marginTop="5dp"
         android:id="@+id/spinner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,22 +25,25 @@
         android:spinnerMode="dropdown" />
 
     <TextView
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:text="Choose Your City" />
 
     <Spinner
+        android:layout_marginTop="5dp"
         android:id="@+id/spinner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
-    <TextView
+    <Button
+        android:layout_marginTop="50dp"
+        android:id= "@+id/destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Text"
-        android:text="Your Selected Cities" />
+        android:text="Your destination:" />
 
 </LinearLayout>

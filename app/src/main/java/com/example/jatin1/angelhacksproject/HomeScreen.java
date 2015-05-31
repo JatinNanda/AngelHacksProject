@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import java.io.BufferedReader;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 public class HomeScreen extends ActionBarActivity {
     String ctry;
     String cty;
+    Button destination;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,44 +39,48 @@ public class HomeScreen extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 ctry = countries.get(position);
+                final ArrayList<String> cities = findCities(ctry);
+                Spinner dropdown2 = (Spinner) findViewById(R.id.spinner2);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(HomeScreen.this, android.R.layout.simple_spinner_item, cities);
+                dropdown2.setAdapter(adapter2);
+                dropdown2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        cty = cities.get(position);
+                        destination = (Button) findViewById(R.id.destination);
+                        destination.setText("Your Destination:" + "\n " + ctry + ", " + cty);
+                        destination.setOnClickListener((new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(getApplicationContext(), LoadingActivity.class));
+                            }
+                        }));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // your code here
+                    }
+                });
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
         });
-        Spinner dropdown2 = (Spinner) findViewById(R.id.spinner2);
-        final ArrayList<String> cities = readFileFromAssets("files/cities.txt");
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
-        dropdown2.setAdapter(adapter2);
-        dropdown2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                cty = cities.get(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-
-        });
-
     }
     
     public ArrayList<String> findCities(String country) {
         ArrayList<String> cities = readFileFromAssets("files/cities.txt");
         ArrayList<String> countries = readFileFromAssets("files/countries.txt");
         ArrayList<String> selectedCities = new ArrayList<String>();
-        for (String s: cities) {
-            if (s.equalsIgnoreCase(country)) {
-                continue;
-            }
-            for (String c: countries) {
-                if (!(s.equalsIgnoreCase(c))) {
-                    selectedCities.add(s);
+        for (int i = 0; i < cities.size(); i++) {
+            if (cities.get(i).equalsIgnoreCase(country)) {
+                for (int j = i; j < cities.size(); j++) {
+                    if (!(countries.contains(cities.get(j)))) {
+                        selectedCities.add(cities.get(j));
+                    }
                 }
             }
         }
